@@ -13,6 +13,7 @@ var Actions = ["player1", "player2"]
 @onready var planes = [$Red, $Blue]
 
 func _ready():
+	SetupUI.hide_victory() # Скрываем надпись с прошлой игры
 	for i in range(planes.size()):
 		var sprite = planes[i].get_node("AnimatedSprite2D")
 		sprite.play(Colors[i])
@@ -35,12 +36,19 @@ func _physics_process(delta):
 		for j in range(plane.get_slide_collision_count()):
 			var collision = plane.get_slide_collision(j)
 			var collider = collision.get_collider()
-			print("Самолёт ", i, " столкнулся с: ", collider.name)
 			if collider.is_in_group("rocks"):
 				plane_hit_rock.emit(i)
 				game_over(i)
+				
 				break
 
 func game_over(plane_index):
-	print("Game Over! Проиграл самолёт ", plane_index)
+	var winner_index = 1 - plane_index # Если проиграл 0, выиграл 1 (и наоборот)
+	SetupUI.show_victory(winner_index)
 	get_tree().paused = true
+	
+	# Ожидаем 3 секунды. create_timer(3.0, true) работает даже во время паузы.
+	await get_tree().create_timer(3.0).timeout
+	
+	get_tree().paused = false
+	get_tree().change_scene_to_file("res://scene_and_scripts/UI/main_menu.tscn")
