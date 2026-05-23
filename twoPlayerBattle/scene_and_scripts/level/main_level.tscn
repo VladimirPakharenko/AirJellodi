@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dtjgq7sw6kw3i"]
+[gd_scene load_steps=10 format=3 uid="uid://dtjgq7sw6kw3i"]
 
 [ext_resource type="PackedScene" uid="uid://r6bvy41nr01e" path="res://scene_and_scripts/scene/сharacters/character_body_2d.tscn" id="1_plane"]
 [ext_resource type="Texture2D" uid="uid://chbfp4mqp1hp5" path="res://assets/kenney_tappy-plane/PNG/background.png" id="2_bg"]
@@ -10,6 +10,12 @@
 normal = Vector2(0, 1)
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_bottom"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_left"]
+normal = Vector2(1, 0)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_right"]
+normal = Vector2(-1, 0)
 
 [node name="MainLevel" type="Node2D"]
 
@@ -29,11 +35,9 @@ script = ExtResource("4_spawn")
 rock_scene = ExtResource("5_rock")
 camera = NodePath("../MainCamera")
 
-[node name="MainCamera" type="Camera2D" parent="." node_paths=PackedStringArray("player1", "player2")]
+[node name="MainCamera" type="Camera2D" parent="."]
 position = Vector2(640, 360)
 script = ExtResource("3_cam")
-player1 = NodePath("")
-player2 = NodePath("")
 
 [node name="Boundaries" type="StaticBody2D" parent="MainCamera"]
 
@@ -44,6 +48,14 @@ shape = SubResource("WorldBoundaryShape2D_top")
 [node name="Bottom" type="CollisionShape2D" parent="MainCamera/Boundaries"]
 position = Vector2(0, 360)
 shape = SubResource("WorldBoundaryShape2D_bottom")
+
+[node name="Left" type="CollisionShape2D" parent="MainCamera/Boundaries"]
+position = Vector2(-640, 0)
+shape = SubResource("WorldBoundaryShape2D_left")
+
+[node name="Right" type="CollisionShape2D" parent="MainCamera/Boundaries"]
+position = Vector2(640, 0)
+shape = SubResource("WorldBoundaryShape2D_right")
 
 [node name="Aircraft" parent="." instance=ExtResource("1_plane")]
 position = Vector2(26, 301)

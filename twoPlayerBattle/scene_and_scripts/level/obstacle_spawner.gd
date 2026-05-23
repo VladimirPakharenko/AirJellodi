@@ -42,8 +42,16 @@ func spawn_obstacle():
 func create_rock(is_top: bool):
 	var rock = rock_scene.instantiate()
 	var textures = rocks_top if is_top else rocks_bottom
+	var tex = textures[randi() % textures.size()]
+
 	var sprite = rock.get_node("Sprite2D")
-	sprite.texture = textures[randi() % textures.size()]
+	sprite.texture = tex
+
+	# Update collision shape to match the texture size exactly
+	var shape_node = rock.get_node("CollisionShape2D")
+	var new_shape = RectangleShape2D.new()
+	new_shape.size = tex.get_size()
+	shape_node.shape = new_shape
 
 	# Randomly mirror the sprite for more variety
 	sprite.flip_h = randi() % 2 == 0
