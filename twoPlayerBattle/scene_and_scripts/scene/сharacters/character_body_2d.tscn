@@ -68,7 +68,7 @@ script = ExtResource("1_46qcv")
 [node name="Red" type="CharacterBody2D" parent="."]
 position = Vector2(187, 77)
 collision_layer = 2
-collision_mask = 5
+collision_mask = 13
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Red"]
@@ -83,7 +83,7 @@ frame_progress = 0.745747
 [node name="Blue" type="CharacterBody2D" parent="."]
 position = Vector2(184, -1)
 collision_layer = 2
-collision_mask = 5
+collision_mask = 13
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Blue"]

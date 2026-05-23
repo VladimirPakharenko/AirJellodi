@@ -21,10 +21,10 @@ normal = Vector2(-1, 0)
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
-[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+[node name="Sky" type="ParallaxLayer" parent="ParallaxBackground"]
 motion_mirroring = Vector2(1280, 0)
 
-[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Sky"]
 texture = ExtResource("2_bg")
 centered = false
 region_enabled = true
@@ -58,4 +58,4 @@ position = Vector2(640, 0)
 shape = SubResource("WorldBoundaryShape2D_right")
 
 [node name="Aircraft" parent="." instance=ExtResource("1_plane")]
-position = Vector2(26, 301)
+position = Vector2(0, 301)
