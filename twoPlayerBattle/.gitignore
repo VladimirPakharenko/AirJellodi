@@ -1,3 +1,31 @@
-# Godot 4+ specific ignores
+# Godot-specific ignores
 .godot/
+.import/
+export_presets.cfg
+
+# Imported binary data
+*.translation
+
+# Mono / C# specific
+.mono/
+bin/
+obj/
+
+# Exported binaries
+*.exe
+*.zip
+*.apk
+*.ipa
+*.dmg
+*.app
+*.html
+*.js
+*.wasm
+*.pck
+
+# Android specific
 /android/
+
+# OS generated files
+.DS_Store
+Thumbs.db
