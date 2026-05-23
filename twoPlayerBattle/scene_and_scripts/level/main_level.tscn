@@ -29,11 +29,9 @@ script = ExtResource("4_spawn")
 rock_scene = ExtResource("5_rock")
 camera = NodePath("../MainCamera")
 
-[node name="MainCamera" type="Camera2D" parent="." node_paths=PackedStringArray("player1", "player2")]
+[node name="MainCamera" type="Camera2D" parent="."]
 position = Vector2(640, 360)
 script = ExtResource("3_cam")
-player1 = NodePath("")
-player2 = NodePath("")
 
 [node name="Boundaries" type="StaticBody2D" parent="MainCamera"]
 
