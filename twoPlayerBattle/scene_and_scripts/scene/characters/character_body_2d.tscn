@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://r6bvy41nr01e"]
 
-[ext_resource type="Script" uid="uid://b1avg746ng1xg" path="res://scene_and_scripts/scene/сharacters/aircraft.gd" id="1_46qcv"]
+[ext_resource type="Script" uid="uid://b1avg746ng1xg" path="res://scene_and_scripts/scene/characters/aircraft.gd" id="1_46qcv"]
 [ext_resource type="Texture2D" uid="uid://bift343uq0ywl" path="res://assets/kenney_tappy-plane/Spritesheet/planes.png" id="1_ex84s"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jppp5"]
@@ -68,7 +68,7 @@ script = ExtResource("1_46qcv")
 [node name="Red" type="CharacterBody2D" parent="."]
 position = Vector2(187, 77)
 collision_layer = 2
-collision_mask = 13
+collision_mask = 5
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Red"]
@@ -83,7 +83,7 @@ frame_progress = 0.745747
 [node name="Blue" type="CharacterBody2D" parent="."]
 position = Vector2(184, -1)
 collision_layer = 2
-collision_mask = 13
+collision_mask = 5
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Blue"]

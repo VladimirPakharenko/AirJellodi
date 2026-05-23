@@ -121,6 +121,7 @@ func create_rock(is_top: bool, custom_scale: float, y_offset: float):
 	# we use the biome that is being used for ground at 'spawn_x'
 	var data = biome_data[current_biome]
 	var textures = data["top"] if is_top else data["bottom"]
+	rock.add_to_group("rocks")
 	var tex = textures[randi() % textures.size()]
 
 	var sprite = rock.get_node("Sprite2D")

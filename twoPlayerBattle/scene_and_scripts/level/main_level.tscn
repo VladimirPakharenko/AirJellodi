@@ -58,4 +58,4 @@ position = Vector2(640, 0)
 shape = SubResource("WorldBoundaryShape2D_right")
 
 [node name="Aircraft" parent="." instance=ExtResource("5_d7fds")]
-position = Vector2(33, 322)
+position = Vector2(2, 332)
