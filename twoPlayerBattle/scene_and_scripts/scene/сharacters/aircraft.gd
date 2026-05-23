@@ -4,7 +4,7 @@ var Positions = [1, -1]
 var Colors = ["air_red", "air_blue"]
 var Actions = ["player1", "player2"]
 
-@export var speed = 30.0
+@export var speed = 200.0
 @export var gravity = 700
 @export var flap_force = 400
 

@@ -29,18 +29,11 @@ script = ExtResource("4_spawn")
 rock_scene = ExtResource("5_rock")
 camera = NodePath("../MainCamera")
 
-[node name="PlayerRed" parent="." instance=ExtResource("1_plane")]
-position = Vector2(200, 300)
-
-[node name="PlayerYellow" parent="." instance=ExtResource("1_plane")]
-position = Vector2(200, 500)
-animation_name = "air_yellow"
-
 [node name="MainCamera" type="Camera2D" parent="." node_paths=PackedStringArray("player1", "player2")]
 position = Vector2(640, 360)
 script = ExtResource("3_cam")
-player1 = NodePath("../PlayerRed")
-player2 = NodePath("../PlayerYellow")
+player1 = NodePath("")
+player2 = NodePath("")
 
 [node name="Boundaries" type="StaticBody2D" parent="MainCamera"]
 
@@ -51,3 +44,6 @@ shape = SubResource("WorldBoundaryShape2D_top")
 [node name="Bottom" type="CollisionShape2D" parent="MainCamera/Boundaries"]
 position = Vector2(0, 360)
 shape = SubResource("WorldBoundaryShape2D_bottom")
+
+[node name="Aircraft" parent="." instance=ExtResource("1_plane")]
+position = Vector2(26, 301)
