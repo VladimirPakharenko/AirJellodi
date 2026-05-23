@@ -1,6 +1,36 @@
-[gd_scene load_steps=16 format=3 uid="uid://r6bvy41nr01e"]
+[gd_scene load_steps=17 format=3 uid="uid://r6bvy41nr01e"]
 
 [ext_resource type="Texture2D" uid="uid://bift343uq0ywl" path="res://assets/kenney_tappy-plane/Spritesheet/planes.png" id="1_ex84s"]
+
+[sub_resource type="GDScript" id="GDScript_ex84s"]
+script/source = "extends CharacterBody2D
+
+@export var jump_force: float = -400.0
+@export var gravity: float = 1000.0
+@export var forward_speed: float = 200.0
+@export var animation_name: String = \"air_red\"
+
+@onready var sprite = $AnimatedSprite2D
+
+func _ready():
+	sprite.play(animation_name)
+
+func _physics_process(delta):
+	# Apply gravity
+	if not is_on_floor():
+		velocity.y += gravity * delta
+
+	# Constant forward movement
+	velocity.x = forward_speed
+
+	move_and_slide()
+
+	# Rotate plane based on vertical velocity for better feel
+	rotation = velocity.y * 0.001
+
+func jump():
+	velocity.y = jump_force
+"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_46qcv"]
 atlas = ExtResource("1_ex84s")
@@ -114,11 +144,11 @@ radius = 36.0
 height = 98.0
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
+script = SubResource("GDScript_ex84s")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_ibmbb")
 animation = &"air_blue"
-frame_progress = 0.176091
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 rotation = 1.5708
