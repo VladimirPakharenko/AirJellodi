@@ -1,0 +1,125 @@
+[gd_scene load_steps=16 format=3 uid="uid://r6bvy41nr01e"]
+
+[ext_resource type="Texture2D" uid="uid://bift343uq0ywl" path="res://assets/kenney_tappy-plane/Spritesheet/planes.png" id="1_ex84s"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_46qcv"]
+atlas = ExtResource("1_ex84s")
+region = Rect2(0, 365, 88, 73)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_puas1"]
+atlas = ExtResource("1_ex84s")
+region = Rect2(0, 0, 88, 73)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_64wha"]
+atlas = ExtResource("1_ex84s")
+region = Rect2(0, 73, 88, 73)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_34833"]
+atlas = ExtResource("1_ex84s")
+region = Rect2(88, 73, 88, 73)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_32413"]
+atlas = ExtResource("1_ex84s")
+region = Rect2(88, 146, 88, 73)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sxp0r"]
+atlas = ExtResource("1_ex84s")
+region = Rect2(88, 219, 88, 73)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mj4hw"]
+atlas = ExtResource("1_ex84s")
+region = Rect2(88, 292, 88, 73)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bko7y"]
+atlas = ExtResource("1_ex84s")
+region = Rect2(0, 438, 88, 73)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2fh00"]
+atlas = ExtResource("1_ex84s")
+region = Rect2(88, 0, 88, 73)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aywtr"]
+atlas = ExtResource("1_ex84s")
+region = Rect2(0, 146, 88, 73)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5n37t"]
+atlas = ExtResource("1_ex84s")
+region = Rect2(0, 219, 88, 73)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_om1fw"]
+atlas = ExtResource("1_ex84s")
+region = Rect2(0, 292, 88, 73)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ibmbb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_46qcv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_puas1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_64wha")
+}],
+"loop": true,
+"name": &"air_blue",
+"speed": 25.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_34833")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_32413")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sxp0r")
+}],
+"loop": true,
+"name": &"air_green",
+"speed": 25.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mj4hw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bko7y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2fh00")
+}],
+"loop": true,
+"name": &"air_red",
+"speed": 25.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aywtr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5n37t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_om1fw")
+}],
+"loop": true,
+"name": &"air_yellow",
+"speed": 25.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jppp5"]
+radius = 36.0
+height = 98.0
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_ibmbb")
+animation = &"air_blue"
+frame_progress = 0.176091
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_jppp5")
