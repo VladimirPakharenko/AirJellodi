@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://r6bvy41nr01e"]
 
-[ext_resource type="Script" uid="uid://b1avg746ng1xg" path="res://scene_and_scripts/scene/сharacters/aircraft.gd" id="1_46qcv"]
+[ext_resource type="Script" uid="uid://b1avg746ng1xg" path="res://scene_and_scripts/scene/characters/aircraft.gd" id="1_46qcv"]
 [ext_resource type="Texture2D" uid="uid://bift343uq0ywl" path="res://assets/kenney_tappy-plane/Spritesheet/planes.png" id="1_ex84s"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jppp5"]

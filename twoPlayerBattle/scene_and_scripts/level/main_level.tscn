@@ -1,9 +1,9 @@
 [gd_scene load_steps=10 format=3 uid="uid://dtjgq7sw6kw3i"]
 
-[ext_resource type="PackedScene" uid="uid://r6bvy41nr01e" path="res://scene_and_scripts/scene/сharacters/character_body_2d.tscn" id="1_plane"]
 [ext_resource type="Texture2D" uid="uid://chbfp4mqp1hp5" path="res://assets/kenney_tappy-plane/PNG/background.png" id="2_bg"]
 [ext_resource type="Script" uid="uid://ntvfouw4qa8o" path="res://scene_and_scripts/level/camera_controller.gd" id="3_cam"]
 [ext_resource type="Script" uid="uid://b67jkku48yvar" path="res://scene_and_scripts/level/obstacle_spawner.gd" id="4_spawn"]
+[ext_resource type="PackedScene" uid="uid://r6bvy41nr01e" path="res://scene_and_scripts/scene/characters/character_body_2d.tscn" id="5_d7fds"]
 [ext_resource type="PackedScene" uid="uid://b8y1v2j3k4l5m" path="res://scene_and_scripts/scene/obstacles/rock.tscn" id="5_rock"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_top"]
@@ -57,5 +57,5 @@ shape = SubResource("WorldBoundaryShape2D_left")
 position = Vector2(640, 0)
 shape = SubResource("WorldBoundaryShape2D_right")
 
-[node name="Aircraft" parent="." instance=ExtResource("1_plane")]
-position = Vector2(26, 301)
+[node name="Aircraft" parent="." instance=ExtResource("5_d7fds")]
+position = Vector2(2, 332)

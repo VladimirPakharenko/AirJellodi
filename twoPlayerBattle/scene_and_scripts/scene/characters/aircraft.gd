@@ -1,5 +1,7 @@
 extends Node2D
 
+signal plane_hit_rock(plane_index)
+
 var Positions = [1, -1]
 var Colors = ["air_red", "air_blue"]
 var Actions = ["player1", "player2"]
@@ -29,3 +31,16 @@ func _physics_process(delta):
 		
 		plane.velocity.x = speed
 		plane.move_and_slide()
+		
+		for j in range(plane.get_slide_collision_count()):
+			var collision = plane.get_slide_collision(j)
+			var collider = collision.get_collider()
+			print("Самолёт ", i, " столкнулся с: ", collider.name)
+			if collider.is_in_group("rocks"):
+				plane_hit_rock.emit(i)
+				game_over(i)
+				break
+
+func game_over(plane_index):
+	print("Game Over! Проиграл самолёт ", plane_index)
+	get_tree().paused = true
