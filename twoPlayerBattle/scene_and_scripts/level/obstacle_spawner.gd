@@ -74,7 +74,7 @@ func create_ground_piece(tex: Texture, x: float, y: float, is_top: bool):
 	var body = StaticBody2D.new()
 	body.collision_layer = 8 # Separate layer for ground
 	body.collision_mask = 0
-	body.z_index = 5 # Middle ground depth
+	body.z_index = -1 # Middle ground depth
 
 	var sprite = Sprite2D.new()
 	sprite.texture = tex
