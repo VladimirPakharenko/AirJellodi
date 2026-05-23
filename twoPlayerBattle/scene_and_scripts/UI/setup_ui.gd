@@ -1,41 +1,10 @@
 extends CanvasLayer
 
-var bg_blue: ColorRect
-var bg_red: ColorRect
-var btn_blue: TouchScreenButton
-var btn_red: TouchScreenButton
 var victory_label: Label
-var btn_size = Vector2(250, 200)
 
 func _ready():
 	process_mode = Node.PROCESS_MODE_ALWAYS # Чтобы UI работал при паузе
 
-	# === Синяя кнопка (Левый нижний угол) - Игрок 2 ===
-	bg_blue = ColorRect.new()
-	bg_blue.color = Color(0.2, 0.4, 0.9, 0.8) # Приятный синий цвет (полупрозрачный)
-	bg_blue.size = btn_size
-	add_child(bg_blue) # Добавляем цветной фон
-	
-	btn_blue = TouchScreenButton.new()
-	var shape_blue = RectangleShape2D.new()
-	shape_blue.size = btn_size
-	btn_blue.shape = shape_blue
-	btn_blue.action = "player2"
-	add_child(btn_blue)
-	
-	# === Красная кнопка (Правый верхний угол) - Игрок 1 ===
-	bg_red = ColorRect.new()
-	bg_red.color = Color(0.9, 0.2, 0.2, 0.8) # Приятный красный цвет (полупрозрачный)
-	bg_red.size = btn_size
-	add_child(bg_red) # Добавляем цветной фон
-	
-	btn_red = TouchScreenButton.new()
-	var shape_red = RectangleShape2D.new()
-	shape_red.size = btn_size
-	btn_red.shape = shape_red
-	btn_red.action = "player1"
-	add_child(btn_red)
-	
 	# === Надпись ПОБЕДА ===
 	victory_label = Label.new()
 	victory_label.add_theme_font_size_override("font_size", 100)
@@ -51,12 +20,6 @@ func _ready():
 
 func update_ui_layout():
 	var size = get_viewport().get_visible_rect().size
-
-	bg_blue.position = Vector2(20, size.y - btn_size.y - 20)
-	btn_blue.position = bg_blue.position + btn_size / 2.0
-
-	bg_red.position = Vector2(size.x - btn_size.x - 20, 20)
-	btn_red.position = bg_red.position + btn_size / 2.0
 
 	victory_label.size = size
 	victory_label.position = Vector2(0, 0)
@@ -76,6 +39,28 @@ func hide_victory():
 		victory_label.hide()
 
 func _process(delta):
-	# Показываем кнопки управления только во время самой игры, чтобы они не висели в главном меню
+	# Показываем победную надпись только во время игры
 	if get_tree().current_scene:
-		visible = (get_tree().current_scene.name == "MainLevel")
+		var is_main_level = (get_tree().current_scene.name == "MainLevel")
+		visible = is_main_level
+		
+		# Синхронизируем нажатия красивых кнопок из CanvasLayer с действиями player1/player2
+		if is_main_level:
+			var canvas = get_tree().current_scene.get_node_or_null("CanvasLayer")
+			if canvas:
+				var red = canvas.get_node_or_null("red")
+				var red2 = canvas.get_node_or_null("red2")
+				
+				# Красная кнопка (Игрок 1)
+				if red:
+					if red.is_pressed() and not Input.is_action_pressed("player1"):
+						Input.action_press("player1")
+					elif not red.is_pressed() and Input.is_action_pressed("player1"):
+						Input.action_release("player1")
+						
+				# Синяя кнопка (Игрок 2)
+				if red2:
+					if red2.is_pressed() and not Input.is_action_pressed("player2"):
+						Input.action_press("player2")
+					elif not red2.is_pressed() and Input.is_action_pressed("player2"):
+						Input.action_release("player2")

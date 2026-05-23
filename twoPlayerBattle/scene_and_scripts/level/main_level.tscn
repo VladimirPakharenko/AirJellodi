@@ -1,10 +1,12 @@
-[gd_scene load_steps=10 format=3 uid="uid://dtjgq7sw6kw3i"]
+[gd_scene load_steps=12 format=3 uid="uid://dtjgq7sw6kw3i"]
 
 [ext_resource type="Texture2D" uid="uid://chbfp4mqp1hp5" path="res://assets/kenney_tappy-plane/PNG/background.png" id="2_bg"]
 [ext_resource type="Script" uid="uid://ntvfouw4qa8o" path="res://scene_and_scripts/level/camera_controller.gd" id="3_cam"]
 [ext_resource type="Script" uid="uid://b67jkku48yvar" path="res://scene_and_scripts/level/obstacle_spawner.gd" id="4_spawn"]
 [ext_resource type="PackedScene" uid="uid://r6bvy41nr01e" path="res://scene_and_scripts/scene/characters/character_body_2d.tscn" id="5_d7fds"]
 [ext_resource type="PackedScene" uid="uid://b8y1v2j3k4l5m" path="res://scene_and_scripts/scene/obstacles/rock.tscn" id="5_rock"]
+[ext_resource type="Texture2D" uid="uid://xiksatdkqdoj" path="res://assets/kenney_ui-pack/PNG/Red/Default/button_round_depth_flat.png" id="6_ay6vl"]
+[ext_resource type="Texture2D" uid="uid://nip54tl4rd5h" path="res://assets/kenney_ui-pack/PNG/Blue/Default/button_round_depth_flat.png" id="7_24we7"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_top"]
 normal = Vector2(0, 1)
@@ -63,3 +65,33 @@ shape = SubResource("WorldBoundaryShape2D_right")
 
 [node name="Aircraft" parent="." instance=ExtResource("5_d7fds")]
 position = Vector2(27, 373)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="red" type="TextureButton" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 13.0
+offset_top = 633.0
+offset_right = -921.0
+offset_bottom = -12.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("6_ay6vl")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="red2" type="TextureButton" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 922.0
+offset_top = 19.0
+offset_right = -12.0
+offset_bottom = -626.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("7_24we7")
+ignore_texture_size = true
+stretch_mode = 0
