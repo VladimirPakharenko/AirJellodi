@@ -11,13 +11,13 @@ config_version=5
 [application]
 
 config/name="two_player_battle"
-run/main_scene="uid://r6bvy41nr01e"
+run/main_scene="uid://dtjgq7sw6kw3i"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 
 [display]
 
-window/size/viewport_width=1088
-window/size/viewport_height=800
+window/size/viewport_width=1280
+window/size/viewport_height=720
 
 [input]
 

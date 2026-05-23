@@ -1,0 +1,53 @@
+[gd_scene load_steps=8 format=3 uid="uid://dtjgq7sw6kw3i"]
+
+[ext_resource type="PackedScene" uid="uid://r6bvy41nr01e" path="res://scene_and_scripts/scene/сharacters/character_body_2d.tscn" id="1_plane"]
+[ext_resource type="Texture2D" uid="uid://chbfp4mqp1hp5" path="res://assets/kenney_tappy-plane/PNG/background.png" id="2_bg"]
+[ext_resource type="Script" uid="uid://ntvfouw4qa8o" path="res://scene_and_scripts/level/camera_controller.gd" id="3_cam"]
+[ext_resource type="Script" uid="uid://b67jkku48yvar" path="res://scene_and_scripts/level/obstacle_spawner.gd" id="4_spawn"]
+[ext_resource type="PackedScene" uid="uid://b8y1v2j3k4l5m" path="res://scene_and_scripts/scene/obstacles/rock.tscn" id="5_rock"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_top"]
+normal = Vector2(0, 1)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_bottom"]
+
+[node name="MainLevel" type="Node2D"]
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2(1280, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+texture = ExtResource("2_bg")
+centered = false
+region_enabled = true
+region_rect = Rect2(0, 0, 1280, 720)
+
+[node name="ObstacleSpawner" type="Node2D" parent="." node_paths=PackedStringArray("camera")]
+script = ExtResource("4_spawn")
+rock_scene = ExtResource("5_rock")
+camera = NodePath("../MainCamera")
+
+[node name="PlayerRed" parent="." instance=ExtResource("1_plane")]
+position = Vector2(200, 300)
+
+[node name="PlayerYellow" parent="." instance=ExtResource("1_plane")]
+position = Vector2(200, 500)
+animation_name = "air_yellow"
+
+[node name="MainCamera" type="Camera2D" parent="." node_paths=PackedStringArray("player1", "player2")]
+position = Vector2(640, 360)
+script = ExtResource("3_cam")
+player1 = NodePath("../PlayerRed")
+player2 = NodePath("../PlayerYellow")
+
+[node name="Boundaries" type="StaticBody2D" parent="MainCamera"]
+
+[node name="Top" type="CollisionShape2D" parent="MainCamera/Boundaries"]
+position = Vector2(0, -360)
+shape = SubResource("WorldBoundaryShape2D_top")
+
+[node name="Bottom" type="CollisionShape2D" parent="MainCamera/Boundaries"]
+position = Vector2(0, 360)
+shape = SubResource("WorldBoundaryShape2D_bottom")
