@@ -5,8 +5,8 @@ extends Camera2D
 @export var follow_speed: float = 5.0
 @export var horizontal_speed: float = 200.0
 
-func _process(delta):
-	# Constant movement to the right
+func _physics_process(delta):
+	# Constant movement to the right, synced with planes
 	position.x += horizontal_speed * delta
 
 	# Vertical follow disabled for testing
