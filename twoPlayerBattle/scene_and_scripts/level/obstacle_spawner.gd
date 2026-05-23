@@ -50,7 +50,7 @@ func _process(delta):
 		current_biome = (current_biome + 1) % 3
 
 	# Spawn ground ahead of camera
-	if camera.global_position.x + 1280 > last_ground_x:
+	if camera.global_position.x + 1088 > last_ground_x:
 		spawn_ground()
 
 	if timer >= next_spawn_time:
@@ -64,7 +64,7 @@ func spawn_ground():
 	var width = tex.get_width()
 
 	# Bottom ground
-	create_ground_piece(tex, last_ground_x, 720, false)
+	create_ground_piece(tex, last_ground_x, 800, false)
 	# Top ground
 	create_ground_piece(tex, last_ground_x, 0, true)
 
@@ -152,7 +152,7 @@ func create_rock(is_top: bool, custom_scale: float, y_offset: float):
 
 	# 1100 is far enough ahead where we are already placing new ground pieces
 	var spawn_x = camera.global_position.x + 1100
-	var spawn_y = y_offset + (0 if is_top else 720)
+	var spawn_y = y_offset + (0 if is_top else 800)
 
 	rock.global_position = Vector2(spawn_x, spawn_y)
 	get_parent().add_child.call_deferred(rock)
