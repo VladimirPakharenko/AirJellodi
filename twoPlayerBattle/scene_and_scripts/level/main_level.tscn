@@ -8,27 +8,31 @@
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_top"]
 normal = Vector2(0, 1)
+distance = -42.0
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_bottom"]
+distance = -41.0
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_left"]
 normal = Vector2(1, 0)
+distance = 92.0
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_right"]
 normal = Vector2(-1, 0)
+distance = 94.0
 
 [node name="MainLevel" type="Node2D"]
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
 [node name="Sky" type="ParallaxLayer" parent="ParallaxBackground"]
-motion_mirroring = Vector2(1280, 0)
+motion_mirroring = Vector2(1088, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Sky"]
 texture = ExtResource("2_bg")
 centered = false
 region_enabled = true
-region_rect = Rect2(0, 0, 1280, 720)
+region_rect = Rect2(0, 0, 1088, 800)
 
 [node name="ObstacleSpawner" type="Node2D" parent="." node_paths=PackedStringArray("camera")]
 script = ExtResource("4_spawn")
@@ -36,7 +40,7 @@ rock_scene = ExtResource("5_rock")
 camera = NodePath("../MainCamera")
 
 [node name="MainCamera" type="Camera2D" parent="."]
-position = Vector2(640, 360)
+position = Vector2(544, 400)
 script = ExtResource("3_cam")
 
 [node name="Boundaries" type="StaticBody2D" parent="MainCamera"]
