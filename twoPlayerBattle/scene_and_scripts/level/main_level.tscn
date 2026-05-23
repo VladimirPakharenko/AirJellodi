@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://d0ctbcd2cfg5i"]
+[gd_scene load_steps=10 format=3 uid="uid://dtjgq7sw6kw3i"]
 
 [ext_resource type="Texture2D" uid="uid://chbfp4mqp1hp5" path="res://assets/kenney_tappy-plane/PNG/background.png" id="2_bg"]
 [ext_resource type="Script" uid="uid://ntvfouw4qa8o" path="res://scene_and_scripts/level/camera_controller.gd" id="3_cam"]

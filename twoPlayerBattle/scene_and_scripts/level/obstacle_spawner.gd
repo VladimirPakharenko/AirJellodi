@@ -50,7 +50,8 @@ func _process(delta):
 		current_biome = (current_biome + 1) % 3
 
 	# Spawn ground ahead of camera
-	if camera.global_position.x + 1088 > last_ground_x:
+	var viewport_width = get_viewport_rect().size.x
+	if camera.global_position.x + viewport_width > last_ground_x:
 		spawn_ground()
 
 	if timer >= next_spawn_time:
@@ -62,9 +63,10 @@ func spawn_ground():
 	var data = biome_data[current_biome]
 	var tex = data["ground"]
 	var width = tex.get_width()
+	var viewport_height = get_viewport_rect().size.y
 
 	# Bottom ground
-	create_ground_piece(tex, last_ground_x, 800, false)
+	create_ground_piece(tex, last_ground_x, viewport_height, false)
 	# Top ground
 	create_ground_piece(tex, last_ground_x, 0, true)
 
@@ -99,22 +101,23 @@ func create_ground_piece(tex: Texture, x: float, y: float, is_top: bool):
 	get_parent().add_child.call_deferred(body)
 
 	# Cleanup
-	get_tree().create_timer(20.0).timeout.connect(func(): if is_instance_valid(body): body.queue_free())
+	get_tree().create_timer(20.0).timeout.connect(body.queue_free)
 
 func spawn_obstacle():
 	if not camera: return
 	var type = randi() % 3
+	var viewport_height = get_viewport_rect().size.y
 
 	if type == 0:
-		create_rock(false, randf_range(2.2, 3.0), randf_range(-10, 30))
+		create_rock(false, randf_range(2.2, 3.0), randf_range(-10, 30), viewport_height)
 	elif type == 1:
-		create_rock(true, randf_range(2.2, 3.0), randf_range(-10, 30))
+		create_rock(true, randf_range(2.2, 3.0), randf_range(-10, 30), viewport_height)
 	else:
 		var gate_shift = randf_range(-120, 120)
-		create_rock(false, randf_range(1.3, 1.7), gate_shift)
-		create_rock(true, randf_range(1.3, 1.7), gate_shift)
+		create_rock(false, randf_range(1.3, 1.7), gate_shift, viewport_height)
+		create_rock(true, randf_range(1.3, 1.7), gate_shift, viewport_height)
 
-func create_rock(is_top: bool, custom_scale: float, y_offset: float):
+func create_rock(is_top: bool, custom_scale: float, y_offset: float, viewport_height: float):
 	var rock = rock_scene.instantiate()
 
 	# To ensure the rock matches the ground it spawns over,
@@ -151,9 +154,10 @@ func create_rock(is_top: bool, custom_scale: float, y_offset: float):
 		rock.z_index = 6 # In front of ground
 
 	# 1100 is far enough ahead where we are already placing new ground pieces
-	var spawn_x = camera.global_position.x + 1100
-	var spawn_y = y_offset + (0 if is_top else 800)
+	var viewport_width = get_viewport_rect().size.x
+	var spawn_x = camera.global_position.x + viewport_width + 100
+	var spawn_y = y_offset + (0 if is_top else viewport_height)
 
 	rock.global_position = Vector2(spawn_x, spawn_y)
 	get_parent().add_child.call_deferred(rock)
-	get_tree().create_timer(10.0).timeout.connect(func(): if is_instance_valid(rock): rock.queue_free())
+	get_tree().create_timer(10.0).timeout.connect(rock.queue_free)
