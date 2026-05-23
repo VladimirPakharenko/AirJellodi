@@ -1,6 +1,11 @@
-[gd_scene load_steps=16 format=3 uid="uid://r6bvy41nr01e"]
+[gd_scene load_steps=11 format=3 uid="uid://r6bvy41nr01e"]
 
+[ext_resource type="Script" uid="uid://b1avg746ng1xg" path="res://scene_and_scripts/scene/сharacters/aircraft.gd" id="1_46qcv"]
 [ext_resource type="Texture2D" uid="uid://bift343uq0ywl" path="res://assets/kenney_tappy-plane/Spritesheet/planes.png" id="1_ex84s"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jppp5"]
+radius = 36.0
+height = 98.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_46qcv"]
 atlas = ExtResource("1_ex84s")
@@ -14,18 +19,6 @@ region = Rect2(0, 0, 88, 73)
 atlas = ExtResource("1_ex84s")
 region = Rect2(0, 73, 88, 73)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_34833"]
-atlas = ExtResource("1_ex84s")
-region = Rect2(88, 73, 88, 73)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_32413"]
-atlas = ExtResource("1_ex84s")
-region = Rect2(88, 146, 88, 73)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_sxp0r"]
-atlas = ExtResource("1_ex84s")
-region = Rect2(88, 219, 88, 73)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_mj4hw"]
 atlas = ExtResource("1_ex84s")
 region = Rect2(88, 292, 88, 73)
@@ -37,18 +30,6 @@ region = Rect2(0, 438, 88, 73)
 [sub_resource type="AtlasTexture" id="AtlasTexture_2fh00"]
 atlas = ExtResource("1_ex84s")
 region = Rect2(88, 0, 88, 73)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_aywtr"]
-atlas = ExtResource("1_ex84s")
-region = Rect2(0, 146, 88, 73)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_5n37t"]
-atlas = ExtResource("1_ex84s")
-region = Rect2(0, 219, 88, 73)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_om1fw"]
-atlas = ExtResource("1_ex84s")
-region = Rect2(0, 292, 88, 73)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ibmbb"]
 animations = [{
@@ -68,20 +49,6 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_34833")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_32413")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_sxp0r")
-}],
-"loop": true,
-"name": &"air_green",
-"speed": 25.0
-}, {
-"frames": [{
-"duration": 1.0,
 "texture": SubResource("AtlasTexture_mj4hw")
 }, {
 "duration": 1.0,
@@ -93,33 +60,37 @@ animations = [{
 "loop": true,
 "name": &"air_red",
 "speed": 25.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_aywtr")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_5n37t")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_om1fw")
-}],
-"loop": true,
-"name": &"air_yellow",
-"speed": 25.0
 }]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jppp5"]
-radius = 36.0
-height = 98.0
+[node name="Aircraft" type="Node2D"]
+script = ExtResource("1_46qcv")
 
-[node name="CharacterBody2D" type="CharacterBody2D"]
+[node name="Red" type="CharacterBody2D" parent="."]
+position = Vector2(187, 77)
+collision_layer = 4
+collision_mask = 2
+metadata/_edit_group_ = true
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-sprite_frames = SubResource("SpriteFrames_ibmbb")
-animation = &"air_blue"
-frame_progress = 0.176091
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Red"]
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_jppp5")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Red"]
+sprite_frames = SubResource("SpriteFrames_ibmbb")
+animation = &"air_red"
+frame_progress = 0.745747
+
+[node name="Blue" type="CharacterBody2D" parent="."]
+position = Vector2(184, -1)
+collision_layer = 4
+collision_mask = 2
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Blue"]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_jppp5")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Blue"]
+sprite_frames = SubResource("SpriteFrames_ibmbb")
+animation = &"air_blue"
+frame_progress = 0.0844147
