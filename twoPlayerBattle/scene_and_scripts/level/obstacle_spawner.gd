@@ -41,6 +41,7 @@ func spawn_obstacle():
 
 func create_rock(is_top: bool):
 	var rock = rock_scene.instantiate()
+	rock.add_to_group("rocks")
 	var textures = rocks_top if is_top else rocks_bottom
 	var tex = textures[randi() % textures.size()]
 
